@@ -1,0 +1,269 @@
+﻿@model IEnumerable<Komis.Samochody>
+@using System.Collections.ObjectModel;
+
+@{
+    ViewBag.Title = "Schowek";
+}
+
+<h2>
+    Schowek
+    <span style="float: right; display: inline; font-size: 20px; ">
+        @Html.ActionLink("Opróżnij schowek", "SchowekClear")
+        </span>
+</h2>
+<head>
+    <style>
+
+        .TytClass {
+            color: black;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .pTytClass {
+            color: black;
+            font-size: 12px;
+        }
+
+
+        .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+            padding: 8px;
+            line-height: 1.42857143;
+            vertical-align: middle;
+            border-top: 1px solid #000;
+        }
+
+
+
+
+        table {
+            border-collapse: collapse;
+            border: none;
+            width: 100%;
+        }
+
+            table td, th {
+                padding: 8px;
+            }
+
+            table tr:nth-child(odd) {
+                background: #EBEBF0;
+            }
+
+            table tr:hover {
+                background-color: #ddd;
+            }
+
+            table th {
+                padding-top: 12px;
+                padding-bottom: 12px;
+                background-color: #222;
+                color: white;
+            }
+
+        td:first-child,
+        th:first-child {
+            border-radius: 10px 0 0 10px;
+        }
+
+        td:last-child,
+        th:last-child {
+            border-radius: 0 10px 10px 0;
+        }
+
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Firefox */
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+    </style>
+</head>
+
+
+<body>
+    <span style="float:right; display:inline; padding-bottom:10px;">
+
+        </span>
+        <div id="main">
+            @using (Html.BeginForm("CompareCars", "Samochody"))
+            {
+                <table class="table">
+                    <tr class="colored-row">
+                        <th></th>
+                        <th></th>
+
+                        <th>
+                            @Html.Label("Rok", new { style = "color:White;" })
+                        </th>
+                        <th>
+                            @Html.Label("Przebieg", new { style = "color:White;" })
+                        </th>
+                        <th>
+                            @Html.Label("Rodzaj paliwa", new { style = "color:White;" })
+                        </th>
+                        <th>
+                            @Html.Label("Marka", new { style = "color:White;" })
+                        </th>
+                        <th>
+                            @Html.Label("Model", new { style = "color:White;" })
+                        </th>
+
+                        <th>
+                            @Html.Label("Kolor", new { style = "color:White;" })
+                        </th>
+                        <th>
+                            @Html.Label("Kraj pochodzenia", new { style = "color:White;" })
+                        </th>
+                        <th>
+                            @Html.Label("Kwota", new { style = "color:White;" })
+                        </th>
+
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in (List<Samochody>)Session["SamochodyS"])
+                    {
+
+                        <tr class="colored-row">
+                            <td>
+                                <input type="checkbox" name="checkCompare" value="@item.Id_samochodu" class="enableCheckBox" hidden>
+
+                            </td>
+
+
+                            <td>
+                                <a href="@Url.Action("Details",  new { Id = item.Id_samochodu })">
+                                    <div>
+                                        <span class="TytClass">
+                                            @Html.DisplayFor(modelItem => item.Tytul)
+                                            <br />
+                                        </span>
+                                        <span class="pTytClass">
+                                            @Html.DisplayFor(modelItem => item.Podtytul)
+                                        </span>
+                                        <br />
+
+
+                                    </div>
+                                </a>
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Rok)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Przebieg)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Rodzaj_paliwa)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Marka)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Model)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Kolor)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Kraj_pochodzenia)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Kwota)
+                            </td>
+
+                        </tr>
+
+
+                    }
+
+                </table>
+                <input type="submit" value="Porównaj" class="compareChk" id="CompareBtn" hidden />
+                <input type="button" value="Porównaj" id="CompareButton" />
+                <input type="button" value="Anuluj" id="CancelButton" hidden />
+            }
+
+
+        </div>
+
+
+</body>
+
+@section Scripts {
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+        jQuery(document).ready(function ($) {
+            $("#CompareButton").on('click', function () {
+                $('.enableCheckBox').show();
+                $(this).hide();
+                $('.compareChk').show();
+                $('#CancelButton').show();
+            });
+            $("#CancelButton").on('click', function () {
+                $('.enableCheckBox').hide();
+                $(this).hide();
+                $('.compareChk').hide();
+                $('#CompareButton').show();
+                $("input:checkbox[name=checkCompare]:checked").each(function () {
+                    $(this).prop('checked', false);
+                });
+                $("input:checkbox[name=checkCompare]:not(:checked)").each(function () {
+                    $(this).removeAttr('disabled');
+                });
+
+
+            });
+        });
+
+    </script>
+
+
+    <script type="text/javascript">
+        var selected = [];
+
+        $("input[name=checkCompare]").on("change", function (event) {
+            selected = [];
+            $("input:checkbox[name=checkCompare]:checked").each(function () {
+                selected.push($(this).attr('name'));
+            });
+        });
+
+
+
+        var c = document.getElementById("CompareBtn");
+        c.addEventListener("click", function (event) {
+            if (selected.length < 2) {
+                alert("Musisz zaznaczyć 2 samochody do porównania!");
+                event.preventDefault();
+                return false;
+            }
+        }, false);
+
+
+
+        $("input[name=checkCompare]").on("change", function (event) {
+            if (selected.length == 2) {
+                $("input:checkbox[name=checkCompare]:not(:checked)").each(function () {
+                    $(this).attr('disabled', 'disabled');
+                });
+            }
+            else {
+                $("input:checkbox[name=checkCompare]:not(:checked)").each(function () {
+                    $(this).removeAttr('disabled');
+                });
+            }
+
+        });
+
+    </script>
+
+}

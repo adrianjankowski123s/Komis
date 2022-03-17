@@ -1,0 +1,219 @@
+﻿@model IEnumerable<Komis.Samochody>
+
+@{
+    ViewBag.Title = "View";
+}
+<style>
+    
+    table {
+        border-collapse: collapse;
+        border: none;
+        width: 100%;
+    }
+
+        table td, th {
+            padding: 8px;
+        }
+
+        table tr:nth-child(odd) {
+            background: #EBEBF0;
+        }
+
+        table tr:hover {
+            background-color: #ddd;
+        }
+
+        table th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            color: black;
+        }
+
+    
+
+</style>
+
+<h2>Porównanie</h2>
+
+<table>
+
+    <tr>
+        <th />
+        @foreach (var item in Model)
+        {
+            <th>
+                @if (item.Zdjecia.Count != 0)
+                {
+                    <img width="150"
+                         src='@Url.Action("show", "Samochody", new { id = item.Zdjecia.First().Id_zdjecia })' />
+                }
+            </th>
+        }
+    </tr>
+
+    <tr>
+        <th>Marka: </th>
+        @foreach (var item in Model)
+        {
+            <td>@item.Marka</td>
+        }
+    </tr>
+    <tr>
+        <th>Model:</th>
+        @foreach (var item in Model)
+        {
+            <td>@item.Model</td>
+        }
+    </tr>
+
+    <tr>
+        <th>Wersja: </th>
+        @foreach (var item in Model)
+        {
+            <td>@item.Wersja</td>
+        }
+    </tr>
+
+    <tr>
+        <th>Generacja:</th>
+        @foreach (var item in Model)
+        {
+            <td>@item.Generacja</td>
+        }
+    </tr>
+
+
+
+    <tr>
+        <th>Kategoria:</th>
+        @foreach (var item in Model)
+        {
+            <td>@item.Kategoria</td>
+        }
+    </tr>
+
+    <tr>
+        <th>Typ:</th>
+        @foreach (var item in Model)
+        {
+            <td>@item.Typ</td>
+        }
+    </tr>
+
+    <tr>
+        <th>Pojemność:</th>
+        @foreach (var item in Model)
+        {
+            <td>@item.Pojemnosc</td>
+        }
+    </tr>
+    <tr>
+        <th>Moc:</th>
+        @foreach (var item in Model)
+        {
+            <td>@item.Moc</td>
+        }
+    </tr>
+    <tr>
+        <th>Przebieg:</th>
+        @foreach (var item in Model)
+        {
+            <td>@item.Przebieg</td>
+        }
+    </tr>
+
+    <tr>
+        <th>Rok:</th>
+        @foreach (var item in Model)
+        {
+            <td>@item.Rok</td>
+        }
+    </tr>
+
+
+    <tr>
+        <th>Napęd:</th>
+        @foreach (var item in Model)
+        {
+            <td>@item.Naped</td>
+        }
+    </tr>
+    <tr>
+        <th>Skrzynia biegów:</th>
+        @foreach (var item in Model)
+        {
+            <td>@item.Skrzynia_biegow</td>
+        }
+    </tr>
+
+    <tr>
+        <th>Liczba miejsc:</th>
+        @foreach (var item in Model)
+        {
+            <td>@item.Skrzynia_biegow</td>
+        }
+    </tr>
+    <tr>
+        <th>Rodzaj paliwa:</th>
+        @foreach (var item in Model)
+        {
+            <td>@item.Rodzaj_paliwa</td>
+        }
+    </tr>
+    <tr>
+        <th>Emisja CO2:</th>
+        @foreach (var item in Model)
+        {
+            <td>@item.Emisja_co2</td>
+        }
+    </tr>
+    <tr>
+        <th>Stan:</th>
+        @foreach (var item in Model)
+        {
+            <td>@item.Stan</td>
+        }
+    </tr>
+    <tr>
+        <th>Liczba miejsc:</th>
+        @foreach (var item in Model)
+        {
+            <td>@item.Liczba_miejsc</td>
+        }
+    </tr>
+    <tr>
+        <th>Liczba drzwi:</th>
+        @foreach (var item in Model)
+        {
+            <td>@item.Liczba_drzwi</td>
+        }
+    </tr>
+    <tr>
+        <th>Kraj pochodzenia:</th>
+        @foreach (var item in Model)
+        {
+            <td>@item.Kraj_pochodzenia</td>
+        }
+    </tr>
+
+    <tr>
+        <th>Zarejestrowany w Polsce?</th>
+        @foreach (var item in Model)
+        {
+            <td>@item.Zarejestrowany_w_polsce</td>
+        }
+    </tr>
+
+    <tr>
+        <th>Cena:</th>
+
+        @foreach (var item in Model)
+        {
+            <td>@item.Kwota</td>
+        }
+    </tr>
+
+</table>
+<div>
+    @Html.ActionLink("Wróć", "Index")
+    </div>

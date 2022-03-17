@@ -1,0 +1,176 @@
+﻿@model Komis.Samochody
+
+@{
+    ViewBag.Title = "Umowa kupna-sprzedaży";
+}
+
+<h2>Umowa kupna-sprzedaży</h2>
+
+@using (Html.BeginForm())
+{<div class="form-horizontal">
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        @Html.Label("Imię sprzedającego:", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBox("imieS")
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Nazwisko sprzedjącego:", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBox("nazwiskoS")
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Adres sprzedjącego:", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBox("adresS")
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Dokument tożsamości sprzedjącego nr:", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBox("nrS")
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Organ wydający (sprzedjący):", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBox("wydanyS")
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("PESEL/NIP (sprzedjącego):", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBox("peselS")
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Imię kupującego:", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBox("imieK")
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Nazwisko kupującego:", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBox("nazwiskoK")
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Adres kupującego:", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBox("adresK")
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Dokument tożsamości kupującego nr:", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBox("nrK")
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Organ wydający (kupujący):", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBox("wydanyK")
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("PESEL/NIP (kupującego):", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBox("peselK")
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        @Html.Label("Marka:", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBox("Marka")
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.Label("Model:", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBox("Model")
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.Label("Wersja:", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBox("Wersja")
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.Label("Generacja:", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBox("Generacja")
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.Label("Rok produkcji:", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBox("Rok")
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.Label("Nr nadwozia (VIN):", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBox("Vin")
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.Label("Przebieg:", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBox("Przebieg")
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.Label("Kolor:", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBox("Kolor")
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Kwota:", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBox("Kwota")
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Generuj umowę" class="btn btn-default" />
+        </div>
+    </div>
+
+</div>
+    }
+
+    @section scripts{
+        <script>
+            $(function () {
+                $('#id_sam').on('change', function () {
+                    var id = $('#id_sam').val();
+
+                    Marka = $('#Marka').val();
+                    document.getElementById('id_sam').value = samochod;
+                    console.log(document.getElementById('id_sam').value);
+                });
+            });
+        </script>
+    }

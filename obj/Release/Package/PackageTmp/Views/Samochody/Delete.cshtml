@@ -1,0 +1,247 @@
+﻿@model Komis.Samochody
+
+@{
+    ViewBag.Title = "Usuwanie";
+}
+
+<h2>Usuwanie</h2>
+
+<h3>Czy jesteś pewien, że chcesz usunąć ten pojazd?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Tytul)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tytul)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Podtytul)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Podtytul)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rok)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rok)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Przebieg)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Przebieg)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pojemnosc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pojemnosc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rodzaj_paliwa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rodzaj_paliwa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Kategoria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kategoria)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Marka)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Marka)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Model)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Model)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Wersja)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Wersja)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Generacja)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Generacja)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Moc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Moc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Skrzynia_biegow)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Skrzynia_biegow)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Naped)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Naped)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Vin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Emisja_co2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Emisja_co2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Typ)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Typ)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Liczba_drzwi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Liczba_drzwi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Liczba_miejsc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Liczba_miejsc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Kolor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kolor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pierwsza_rejestracja)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pierwsza_rejestracja)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Numer_rejestracyjny)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Numer_rejestracyjny)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Zarejestrowany_w_polsce)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Zarejestrowany_w_polsce)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Stan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Stan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Kraj_pochodzenia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kraj_pochodzenia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Opis)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Opis)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Wyposazenie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Wyposazenie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Kwota)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kwota)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Usuń" class="btn btn-default" /> |
+            @Html.ActionLink("Wróć", "Index")
+        </div>
+    }
+</div>

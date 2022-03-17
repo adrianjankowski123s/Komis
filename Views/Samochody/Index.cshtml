@@ -1,0 +1,446 @@
+﻿@model IEnumerable<Komis.Samochody>
+
+@{
+    ViewBag.Title = "Samochody";
+}
+<head>
+    <style>
+        
+        .sidenav {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #222222;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+        .TextBox {
+            color: black;
+        }
+
+            .sidenav a {
+                padding: 8px 8px 8px 8px;
+                text-decoration: none;
+                font-size: 15px;
+                color: white;
+                display: block;
+                
+            }
+            
+
+            .sidenav .closebtn {
+                position: absolute;
+                top: 50px;
+                right: 25px;
+                font-size: 36px;
+                margin-left: 50px;
+            }
+
+        #filtry {
+            display: block;
+            color: #337ab7;
+            transition: 0.3s;
+        }
+
+            #filtry:hover {
+                color: #f1f1f1;
+                cursor: pointer;
+            }
+        
+        
+            
+        .TytClass{
+            color: black;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .pTytClass {
+            color: black;
+            font-size: 12px;
+        }
+
+
+        .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+            padding: 8px;
+            line-height: 1.42857143;
+            vertical-align: middle;
+            border-top: 1px solid #000;
+        }
+       
+       
+
+
+        table {
+            border-collapse: collapse;
+            border: none;
+            width: 100%;
+        }
+
+            table td, th {
+                padding: 8px;
+            }
+
+            table tr:nth-child(odd) {
+                background: #EBEBF0;
+            }
+
+            table tr:hover {
+                background-color: #ddd;
+            }
+
+            table th {
+                padding-top: 12px;
+                padding-bottom: 12px;
+                background-color: #222;
+                color: white;
+            }
+
+        td:first-child,
+        th:first-child {
+            border-radius: 10px 0 0 10px;
+        }
+
+        td:last-child,
+        th:last-child {
+            border-radius: 0 10px 10px 0;
+        }
+
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Firefox */
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+    </style>
+</head>
+
+
+<body>
+    <h2>
+        Przeglądaj oferty
+        <span style="float: right; display: inline; font-size: 25px; ">
+            @Html.ActionLink("Schowek", "SchowekIndex") [@{
+                List<Samochody> samochodyItems;
+                samochodyItems = (List<Samochody>)Session["SamochodyS"];
+                if (samochodyItems != null)
+                {
+                    @Html.DisplayName(samochodyItems.Count().ToString());
+                }
+                else
+                {
+                    @Html.DisplayName("pusty");
+                }
+            }]
+
+        </span>
+    </h2>
+    @Html.Raw(TempData["msg"])
+     
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <br />
+    <br />
+
+    @using (Html.BeginForm("Index", "Samochody", FormMethod.Post))
+    {
+        <a>Cena:</a>
+        <a>
+            @Html.Label("Od:")
+            @Html.TextBox("FiltrCenaOd", "0", new { @style = "color: black" })
+        </a>
+        <a>
+            @Html.Label("Do:")
+            @Html.TextBox("FiltrCenaDo", "1000000", new { @style = "color: black" })
+        </a>
+        <a>Przebieg:</a>
+        <a>
+            @Html.Label("Od:")
+            @Html.TextBox("FiltrPrzebiegOd", "0", new { @style = "color: black" })
+        </a>
+        <a>
+            @Html.Label("Do:")
+            @Html.TextBox("FiltrPrzebiegDo", "9999999", new { @style = "color: black" })
+        </a>
+        <a>
+            @Html.Label("Liczba drzwi:")
+            @Html.DropDownList("FiltrLiczba_drzwi", new SelectList(new string[] { "", "2", "3", "4", "5", "6" }), new { @style = "color: black" })
+        </a>
+
+        <a>
+            @Html.Label("Liczba miejsc:")
+            @Html.DropDownList("FiltrLiczba_miejsc", new SelectList(new string[] { "", "1", "2", "3", "4", "5", "6", "7", "8", "9" }), new { @style = "color: black" })
+        </a>
+
+        <a>
+            @Html.Label("Typ:")
+            @Html.DropDownList("FiltrTyp", new SelectList(new string[] { "", "Coupe", "Hatchback", "kabriolet", "Kombi", "Liftback", "Limuzyna", "Minivan", "Pick-up", "Sedan", "SUV" }), new { @style = "color: black" })
+        </a>
+
+        <a>
+            @Html.Label("Stan:")
+            @Html.DropDownList("FiltrStan", new SelectList(new string[] { "", "Uszkodzony", "Nieuszkodzony" }), new { @style = "color: black" })
+        </a>
+
+
+        <a>
+            @Html.Label("Kolor:")
+            @Html.DropDownList("FiltrKolor", new SelectList(new string[] { "", "Beżowy", "Biały", "Bordowy", "Brązowy", "Czarny", "Czerwony", "Fioletowy", "Niebieski", "Srebrny", "Szary", "Zielony", "Złoty", "Żółty", "Inny kolor", }), new { @style = "color: black" })
+        </a>
+
+        <br />
+        <br />
+
+
+        <input id="FiltrButton" class="move-right" type="submit" value="Filtruj" />
+
+
+
+    }
+
+
+</div>
+
+
+
+
+    @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+    {
+        <p>
+            @Html.ActionLink("Dodaj nową ofertę", "Create")
+        </p>
+    }
+
+    <span id="filtry" onclick="openNav()" style="display:inline">Pokaż filtry</span>
+    @Html.ActionLink("| Usuń filtry", "Index", new { @id = "usunFiltry" }, new { style = "display:inline;" })
+
+
+    <span style="float:right; display:inline; padding-bottom: 15px;">
+        @using (Html.BeginForm())
+        {
+
+            @Html.TextBox("SearchString")
+            <input class="move-right" type="submit" value="Szukaj" />
+
+        }
+    </span>
+
+    <br />
+    <div id="main">
+        @using (Html.BeginForm("CompareCars", "Samochody"))
+        {
+            <table class="table">
+                <tr class="colored-row">
+                    <th></th>
+                    <th></th>
+
+                    <th>
+                        @Html.ActionLink("Rok", "Index", new { sortOrder = ViewBag.RokSortParm }, new { style = "color:White;" })
+                    </th>
+                    <th>
+                        @Html.ActionLink("Przebieg", "Index", new { sortOrder = ViewBag.PrzebiegSortParm }, new { style = "color:White;" })
+                    </th>
+                    <th>
+                        @Html.ActionLink("Rodzaj paliwa", "Index", new { sortOrder = ViewBag.RodzajPaliwaSortParm }, new { style = "color:White;" })
+                    </th>
+                    <th>
+                        @Html.ActionLink("Marka", "Index", new { sortOrder = ViewBag.MarkaSortParm }, new { style = "color:White;" })
+                    </th>
+                    <th>
+                        @Html.ActionLink("Model", "Index", new { sortOrder = ViewBag.ModelSortParm }, new { style = "color:White;" })
+                    </th>
+
+                    <th>
+                        @Html.ActionLink("Kolor", "Index", new { sortOrder = ViewBag.KolorSortParm }, new { style = "color:White;" })
+                    </th>
+                    <th>
+                        @Html.ActionLink("Kraj pochodzenia", "Index", new { sortOrder = ViewBag.KrajSortParm }, new { style = "color:White;" })
+                    </th>
+                    <th>
+                        @Html.ActionLink("Kwota", "Index", new { sortOrder = ViewBag.KwotaSortParm }, new { style = "color:White;" })
+                    </th>
+
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+
+                    <tr class="colored-row">
+                        <td>
+                            <input type="checkbox" name="checkCompare" value="@item.Id_samochodu" class="enableCheckBox" hidden>
+
+                        </td>
+
+
+                        <td>
+                            <a href="@Url.Action("Details",  new { Id = item.Id_samochodu })">
+                                <div>
+                                    <span class="TytClass">
+                                        @Html.DisplayFor(modelItem => item.Tytul)
+                                        <br />
+                                    </span>
+                                    <span class="pTytClass">
+                                        @Html.DisplayFor(modelItem => item.Podtytul)
+                                    </span>
+                                    <br />
+                                    @if (item.Zdjecia.Count != 0)
+                                    {
+                                        <img width="170"
+                                             src='@Url.Action("show", "Samochody", new { id = item.Zdjecia.First().Id_zdjecia })' />
+                                    }
+
+                                </div>
+                            </a>
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Rok)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Przebieg)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Rodzaj_paliwa)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Marka)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Model)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Kolor)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Kraj_pochodzenia)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Kwota)
+                        </td>
+
+
+                        <td>
+                            @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                            {
+                                @Html.ActionLink("Edytuj", "Edit", new { id = item.Id_samochodu })
+                                <br>
+                                @Html.ActionLink("Usuń", "Delete", new { id = item.Id_samochodu })
+                                <br>
+                                @Html.ActionLink("Umowa kupna-sprzedaży", "CreatePdf", new { id = item.Id_samochodu })
+                                <br>
+                                @Html.ActionLink("Generuj kartkę za szybę", "CreateDocKartki", new { id = item.Id_samochodu })
+                                <br>
+                                }
+
+                                @Html.ActionLink("Dodaj do schowka", "Schowek", new { id = item.Id_samochodu })
+                            </td>
+                    </tr>
+
+
+                }
+
+            </table>
+
+            <input type="submit" value="Porównaj" class="compareChk" id="CompareBtn" hidden />
+            <input type="button" value="Porównaj" id="CompareButton" />
+            <input type="button" value="Anuluj" id="CancelButton" hidden />
+        }
+
+
+    </div>
+
+
+</body>
+
+@section Scripts {
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    
+    <script>
+        jQuery(document).ready(function ($) {
+            $("#CompareButton").on('click', function () {
+                $('.enableCheckBox').show();
+                $(this).hide();
+                $('.compareChk').show();
+                $('#CancelButton').show();
+            });
+            $("#CancelButton").on('click', function () {
+                $('.enableCheckBox').hide();
+                $(this).hide();
+                $('.compareChk').hide();
+                $('#CompareButton').show();
+                $("input:checkbox[name=checkCompare]:checked").each(function () {
+                    $(this).prop('checked', false);
+                });
+                $("input:checkbox[name=checkCompare]:not(:checked)").each(function () {
+                    $(this).removeAttr('disabled');
+                });
+
+
+            });
+       });
+
+    </script>
+
+
+    <script type="text/javascript">
+        var selected = [];
+
+        $("input[name=checkCompare]").on("change", function (event) {
+            selected = [];
+            $("input:checkbox[name=checkCompare]:checked").each(function () {
+                selected.push($(this).attr('name'));
+            });
+        });
+
+
+
+        var c = document.getElementById("CompareBtn");
+        c.addEventListener("click", function (event) {
+            if (selected.length < 2) {
+                alert("Musisz zaznaczyć 2 samochody do porównania!");
+                event.preventDefault();
+                return false;
+            }
+        }, false);
+
+
+
+        $("input[name=checkCompare]").on("change", function (event) {
+            if (selected.length == 2) {
+                $("input:checkbox[name=checkCompare]:not(:checked)").each(function () {
+                    $(this).attr('disabled', 'disabled');
+                });
+            }
+            else {
+                $("input:checkbox[name=checkCompare]:not(:checked)").each(function () {
+                    $(this).removeAttr('disabled');
+                });
+            }
+
+        });
+
+    </script>
+
+    <script>
+        /* Set the width of the side navigation to 250px */
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+        }
+
+        /* Set the width of the side navigation to 0 */
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+    </script>
+}

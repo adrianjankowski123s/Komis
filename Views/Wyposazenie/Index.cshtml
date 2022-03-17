@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Komis.Wyposazenie>
+
+@{
+    ViewBag.Title = "Wyposażenie";
+}
+
+<h2>Lista wyposażenia samochodów</h2>
+
+<p>
+    @Html.ActionLink("Dodaj nowe", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nazwa_wyposazenia)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nazwa_wyposazenia)
+        </td>
+        <td>
+            @Html.ActionLink("Usuń", "Delete", new { id=item.Id_wyposazenia })
+        </td>
+    </tr>
+}
+
+</table>

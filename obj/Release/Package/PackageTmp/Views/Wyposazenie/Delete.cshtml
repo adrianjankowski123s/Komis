@@ -1,0 +1,30 @@
+﻿@model Komis.Wyposazenie
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h3>Czy chcesz usunąć to wyposażenie?</h3>
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nazwa_wyposazenia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nazwa_wyposazenia)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Usuń" class="btn btn-default" /> |
+            @Html.ActionLink("Wróć", "Index")
+        </div>
+    }
+</div>

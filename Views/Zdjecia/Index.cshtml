@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Komis.Zdjecia>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Samochody.Tytul)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tytul)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nazwa_zdjecia)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Samochody.Tytul)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tytul)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nazwa_zdjecia)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id_zdjecia }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id_zdjecia }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id_zdjecia })
+        </td>
+    </tr>
+}
+
+</table>

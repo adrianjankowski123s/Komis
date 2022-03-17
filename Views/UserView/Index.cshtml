@@ -1,0 +1,46 @@
+﻿@model Komis.Models.GroupedUserViewModel
+  
+<h2>Lista użytkowników</h2>
+
+<table class="table">
+
+    @foreach (var item in Model.Users)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Roles)
+
+            </td>
+            <td>
+                @Html.ActionLink("Zmień rolę", "ChangeRole", new { email = item.Email })
+                <br>
+                @Html.ActionLink("Usuń użytkownika", "Delete", new { email = item.Email })
+
+            </td>
+
+
+        </tr>
+
+    }
+    @foreach (var items in Model.Admins)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => items.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => items.Roles)
+            </td>
+            <td>
+                @Html.ActionLink("Zmień rolę", "ChangeRole", new { email = items.Email })
+                <br>
+                @Html.ActionLink("Usuń użytkownika", "Delete", new { email = items.Email })
+            </td>
+        </tr>
+    }
+
+
+</table>

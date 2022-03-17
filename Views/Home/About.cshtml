@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+<style>
+    p {
+        font-size: 20px;
+    }
+</style>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>O nas</title>
+
+</head>
+<body>
+    <br />
+    <br />
+    <div id="accordion">
+        <h3 style="background: #222; color:white; font-size:30px">Dlaczego my?</h3>
+        <div>
+            <p>
+                Nasza firma znajduje się na rynku od 10 lat. Klienci często do nas wracają po zakup kolejnych aut.
+                Sprowadzane przez nas samochody są dokładnie sprawdzane przez mechaników, nie ukrywamy żadnych wad,
+                dzięki czemu klient wie dokładnie co kupuje.
+            </p>
+        </div>
+        <h3 style="background: #222; color:white; font-size:30px">Skąd pochodzą samochody?</h3>
+        <div>
+            <p>
+                Samochody sprowadzamy z całej Europy. Najczęściej są to kraje takie jak Niemcy czy Francja.
+            </p>
+        </div>
+        <h3 style="background: #222; color:white; font-size:30px">Czy sprowadzacie samochody na życzenie klienta?</h3>
+        <div>
+            <p>
+                Tak, jest taka możliwość. Szczegóły można ustalić kontaktując się z nami osobiście lub przez zakładkę Kontakt.
+            </p>
+        </div>
+        
+    </div>
+
+
+</body>
+@section Scripts {
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+    <script>
+        $(function () {
+            $("#accordion").accordion();
+        });
+    </script>
+    }
